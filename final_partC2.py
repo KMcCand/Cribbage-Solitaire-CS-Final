@@ -8,6 +8,20 @@ Includes a CribbageSolitaireGUI class that inherits from
 CribbageSolitaire layed out in final_partB and includes methods to
 display all of the cards, the users points, any special point
 comboinations they made, and whether they won or lost.
+
+General Reference Source: (The first was used to learn the basic of
+labels, texts, images, and buttons, the second to learn .place as
+.pack was not working, and the third was to delay actions in tkinter,
+the .after method)
+https://robotic-controls.com/book/export/html/7
+
+https://pythonbasics.org/tkinter-image/
+
+https://stackoverflow.com/questions/23381319/
+make-a-button-appear-after-some-time
+
+More specific reference sources are linked in the comments next to
+where they are used.
 """
 
 
@@ -82,8 +96,12 @@ class CribbageSolitaireGUI(CribbageSolitaire):
                 card_label = tk.Label(
                                   root, width=width, height=height, image=card,
                                   borderwidth=0, bg="forest green")
-                # Need to anchor poop to card_label so that Garbage Collection
-                # doesn't make it go away
+                # Need to anchor poop to card_label so that
+                # Garbage Collection doesn't make it go away.
+                # Got help with this from Stack Overflow:
+                # https://stackoverflow.com/questions/16424091/why-
+                # does-tkinter-image-not-show-up-if
+                # -created-in-a-function
                 card_label.photo = card
 
                 card_label.place(x=105 * i + 30, y=40 * j + 30)
@@ -154,8 +172,13 @@ class CribbageSolitaireGUI(CribbageSolitaire):
 
             card_label = tk.Label(root, height=height,
                                   image=card, borderwidth=0, bg="forest green")
-            # Need to anchor poop to card_label so that Garbage Collection
-            # doesn't make it go away
+            
+            # Need to anchor poop to card_label so that
+            # Garbage Collection doesn't make it go away.
+            # Got help with this from Stack Overflow:
+            # https://stackoverflow.com/questions/16424091/why-
+            # does-tkinter-image-not-show-up-if
+            # -created-in-a-function
             card_label.photo = card
 
             card_label.place(x=480, y=40 * index + 140)
@@ -588,6 +611,10 @@ def cool_effect(title_text, index, str):
     printing a letter in str then waiting 80 milliseconds.
     """
 
+    # THIS METHOD WAS TAKEN FROM STACK OVERFLOW by TigerhawkT3: 
+    # https://stackoverflow.com/questions/37059668/
+    # typewriter-effect-in-tkinter
+
     title_text.insert(index, str[0])
 
     if len(str) > 1:
@@ -603,6 +630,10 @@ def welcome_screen():
     """Display the welcome screen with a welcome message and a button
     to start the game.
     """
+
+    # Learned how to center text from Stack Overflow:
+    # https://stackoverflow.com/questions/42560585/
+    # how-do-i-center-text-in-the-tkinter-text-widget
 
     title_text = tk.Text(root, bg="forest green",
                          font=("Courier", 30), pady=100)
