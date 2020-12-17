@@ -328,8 +328,7 @@ class CribbageSolitaireGUI(CribbageSolitaire):
             self.display_all()
 
         else:
-            pass
-            # TODO: inform user there are no moves to undo
+            no_undos()
 
 
 def make_deck():
@@ -461,6 +460,22 @@ def end_game(points):
     poop_text.insert("1.0", "\nPress 'p' for a poop emoji, or q to quit.")
 
 
+def no_undos():
+    """Inform the user that there are no moves to undo by printing
+    a message in the bottom left corner.
+    """
+
+    no_undo_text = tk.Text(
+        root, bg="forest green", font=("Courier", 20), highlightthickness=0)
+    no_undo_text.place(x=50, y=700)
+    no_undo_text.insert("1.0", "There are no moves to undo.")
+
+    # Display the text then make it go away after 1.5 seconds
+    root.update()
+    root.after(1500, no_undo_text.destroy())
+    root.update()
+
+
 def display_codes(codes):
     """Display the codes to the points that the user got for three
     seconds in red font, then remove them.
@@ -532,15 +547,16 @@ def click_handler(event):
 
 
 def illegal_move(x_loc, y_loc):
-    """Print illegal MOVE in bold red font at x_loc, y_loc."""
+    """Print ILLEGAL MOVE in bold red font at x_loc, y_loc."""
 
     illegal_text = tk.Text(root, bg="forest green", font=(
         "Courier", 20, "bold"), highlightthickness=0,
         fg="red", width=8, height=2)
     illegal_text.place(x=x_loc, y=y_loc)
-    illegal_text.insert("1.0", "illegal\nMOVE")
+    illegal_text.insert("1.0", "ILLEGAL\nMOVE")
 
     root.update()
+    # Make the text go away after half a second
     root.after(500, illegal_text.destroy())
 
 
@@ -612,6 +628,8 @@ if __name__ == '__main__':
 
     root.bind('<Key>', key_handler)
     root.bind('<Button-1>', click_handler)
+    root.update()
 
-    welcome_screen()
+    # Give the user a second to get ready before starting
+    root.after(1000, welcome_screen())
     root.mainloop()
