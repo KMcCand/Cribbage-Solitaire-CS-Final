@@ -640,7 +640,7 @@ def welcome_screen():
     title_text.tag_configure("center", justify="center")
 
     cool_effect(title_text, "1.0", "Welcome to Cribbage Solitaire.")
-
+    
     play_button = tk.Button(
         root, text="Start Game", highlightbackground="forest green",
         width=100, height=30, command=cs.play)
@@ -661,6 +661,6 @@ if __name__ == '__main__':
     root.bind('<Button-1>', click_handler)
     root.update()
 
-    # Give the user a second to get ready before starting
-    root.after(1000, welcome_screen())
+    # Give the user a half to get ready before starting
+    root.after(500, welcome_screen())
     root.mainloop()
