@@ -9,6 +9,15 @@ or for a computer player to do the same.
 Includes a CribbageSolitaire class that stores the state of the game,
 has methods to make a move, load a deck from a file, save a deck, and
 run the game.
+
+Optional Command line arguments:
+ - If no input command line args, runs game for user with random deck
+ - If "autoplay" entered, runs game with 1 move look ahead autosolver
+ on random deck
+ - If "replay" and <filename> entered, runs game for user by loading
+ the deck found at filename
+ - If "autoreplay" and <filename>, runs 1 move look ahead autosolver
+ for the deck found at filename
 """
 
 import random
